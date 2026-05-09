@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Task-Mayank</title>
+
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      min-height:100vh;
+      background:linear-gradient(135deg,#ececff,#f7f6ff);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
+      color:#24324a;
+    }
+
+    .container{
+      width:100%;
+      max-width:1400px;
+      background:rgba(255,255,255,0.6);
+      backdrop-filter:blur(12px);
+      border-radius:30px;
+      padding:30px;
+      box-shadow:0 10px 40px rgba(0,0,0,0.08);
+    }
+
+
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:30px;
+    }
+
+    .menu-btn,
+    .theme-btn{
+      width:50px;
+      height:50px;
+      border-radius:15px;
+      border:none;
+      background:white;
+      box-shadow:0 5px 15px rgba(0,0,0,0.08);
+      font-size:22px;
+      cursor:pointer;
+    }
+
+    
+
+  
+
+    .search-section{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      margin-bottom:40px;
+      flex-wrap:wrap;
+    }
+
+    .search-box{
+      flex:1;
+      min-width:280px;
+      background:white;
+      border-radius:50px;
+      padding:16px 25px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .search-box input{
+      border:none;
+      outline:none;
+      width:100%;
+      font-size:16px;
+      background:transparent;
+    }
+
+    .filter-box{
+      display:flex;
+      gap:15px;
+    }
+
+    .filter-btn{
+      background:white;
+      border:none;
+      padding:16px 24px;
+      border-radius:40px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.05);
+      cursor:pointer;
+      font-weight:500;
+    }
+
+  
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:25px;
+      margin-bottom:40px;
+    }
+
+    .card{
+      background:rgba(255,255,255,0.75);
+      border-radius:28px;
+      padding:20px;
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 10px 25px rgba(0,0,0,0.06);
+      transition:0.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-8px);
+    }
+
+    .favorite{
+      position:absolute;
+      right:18px;
+      top:18px;
+      width:38px;
+      height:38px;
+      background:white;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 3px 10px rgba(0,0,0,0.08);
+      cursor:pointer;
+    }
+
+    .pokemon-id{
+      color:#9aa4b2;
+      font-weight:600;
+      margin-bottom:10px;
+    }
+
+    .pokemon-img{
+      width:100%;
+      height:200px;
+      object-fit:contain;
+      margin-bottom:10px;
+    }
+
+    .pokemon-name{
+      font-size:28px;
+      font-weight:700;
+      margin-bottom:15px;
+    }
+
+    .bottom{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      
+    }
+
+    .type{
+      padding:8px 14px;
+      border-radius:20px;
+      font-size:13px;
+      font-weight:600;
+      color:white;
+    }
+
+    .arrow{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      background:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:18px;
+      cursor:pointer;
+      box-shadow:0 3px 10px rgba(0,0,0,0.08);
+    }
+
+
+
+    .grass{
+      border-bottom:5px solid #67c46a;
+    }
+
+    .grass .type{
+      background:#67c46a;
+    }
+
+    .steel{
+      border-bottom:5px solid #73859c;
+    }
+
+    .steel .type{
+      background:#73859c;
+    }
+
+    .fire{
+      border-bottom:5px solid #ff7d57;
+    }
+
+    .fire .type{
+      background:#ff7d57;
+    }
+
+    .water{
+      border-bottom:5px solid #6d8cff;
+    }
+
+    .water .type{
+      background:#6d8cff;
+    }
+
+   
+
+    .features{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+    }
+
+    .feature{
+      background:rgba(255,255,255,0.7);
+      border-radius:22px;
+      padding:25px;
+      display:flex;
+      gap:15px;
+      align-items:flex-start;
+      box-shadow:0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .icon{
+      width:50px;
+      height:50px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:24px;
+      color:white;
+    }
+
+    .blue{background:#6c7cff;}
+    .green{background:#76c96b;}
+    .yellow{background:#f7c53f;}
+    .purple{background:#bb73ff;}
+
+    .feature h3{
+      margin-bottom:6px;
+    }
+
+    .feature p{
+      font-size:14px;
+      color:#6f7a89;
+    }
+
+    @media(max-width:768px){
+
+      .logo{
+        font-size:34px;
+      }
+
+      .pokemon-name{
+        font-size:22px;
+      }
+
+      .search-section{
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .filter-box{
+        width:100%;
+      }
+
+      .filter-btn{
+        flex:1;
+      }
+    }
+    .ml{
+        align-content: center;
+        border: 2px solid blue;
+        border-radius: 6px;
+        height: 30px;
+        width: 100px;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="topbar">
+
+      <button class="menu-btn">☰</button>
+
+      <div class="logo"><img src="logo.png"></div>
+
+      <button class="theme-btn">☼</button>
+
+    </div>
+
+   
+
+    <div class="search-section">
+
+      <div class="search-box">
+        <input type="text" placeholder="Search for a Pokémon...">
+      </div>
+
+      <div class="filter-box">
+        <button class="filter-btn">Filter by types</button>
+        <button class="filter-btn">☰</button>
+      </div>
+
+    </div>
+
+
+    <div class="cards">
+
+      <div class="card grass">
+        <div class="favorite">♡</div>
+
+        <div class="pokemon-id">#0908</div>
+
+        <img class="pokemon-img"
+        src="sceptile.jpg">
+
+        <div class="pokemon-name">Sceptile</div>
+
+        <div class="bottom">
+          <div class="type">GRASS</div>
+          <div class="arrow">→</div>
+        </div>
+      </div>
+
+      <div class="card steel">
+        <div class="favorite">♡</div>
+
+        <div class="pokemon-id">#069</div>
+
+        <img class="pokemon-img"
+        src="luxray.jpg">
+
+        <div class="pokemon-name">Luxray</div>
+
+        <div class="bottom">
+          <div class="type" style="background-color: #f7c53f;">ELECTRIC</div>
+          <div class="arrow">→</div>
+        </div>
+      </div>
+
+      <div class="card fire">
+        <div class="favorite">♡</div>
+
+        <div class="pokemon-id">#1432</div>
+
+        <img class="pokemon-img"
+        src="C.jpg">
+        <div class="pokemon-name">Mega Charlizard X</div>
+
+        <div class="bottom">
+          <div class="type" style="background-color: darkblue;">DARK / FIRE</div>
+          <div class="arrow">→</div>
+        </div>
+      </div>
+
+      <div class="card water">
+        <div class="favorite">♡</div>
+
+        <div class="pokemon-id">#6969</div>
+
+        <img class="pokemon-img"
+        src="download.jpg">
+        <div class="pokemon-name">Greyninja</div>
+
+        <div class="bottom">
+          <div class="type">WATER</div>
+          <div class="arrow">→</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="features">
+
+      <div class="feature">
+        <div class="icon blue">◉</div>
+
+        <div>
+          <h3>Explore</h3>
+          <p>Discover all your favorite Pokémon</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="icon green">🍃</div>
+
+        <div>
+          <h3>Filter</h3>
+          <p>Find Pokémon by types and abilities</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="icon yellow">★</div>
+
+        <div>
+          <h3>Collection</h3>
+          <p>Save and manage your collection</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="icon purple">♛</div>
+
+        <div>
+          <h3>Stats</h3>
+          <p>View stats and learn about Pokémon</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+ 
+</body>
+</html>
